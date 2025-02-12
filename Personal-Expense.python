@@ -1,0 +1,37 @@
+from datetime import datetime
+
+expenses = []
+
+def add_expense():
+    while True:
+        date_input = input('Enter date of expense (YYYY-MM-DD): ')
+        try:
+            date = datetime.strptime(date_input, "%Y-%m-%d").date()
+            break
+        except ValueError:
+            print('Invalid date format. Please enter again.')
+
+    category = input('Enter the expense category: ')
+
+    while True:
+        try:
+            amount = float(input('Enter amount spent $: '))
+            break  # Exit loop once valid input is received
+        except ValueError:
+            print('Invalid input. Please enter a number.')
+
+    description = input('Enter description: ')
+
+    expense = {
+        'date': date.strftime("%Y-%m-%d"),
+        'category': category,
+        'amount': amount,
+        'description': description
+    }
+    expenses.append(expense)
+    print('Expense added!')
+
+# Debug statement to check function existence
+print("Calling add_expense() now...")
+add_expense()
+
